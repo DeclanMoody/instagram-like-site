@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moodygram</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <div class="row">
+      <nav>
+        <div class="nav-wrapper light-blue darken-2 center">
+          <%= link_to "Moodygram", root_path, :class => "brand-logo" %>
+          <ul class="left hide-on-med-and-down">
+            <li class="<%= "active" if current_page?(new_post_path) %>"><%= link_to "New Post", new_post_path %></li>
+          </ul>
+          <ul class="right hide-on-med-and-down">
+            <% if current_user %>
+              <li>
+                <%= link_to "Logout", destroy_user_session_path,:data => { method: :delete, :confirm => "Are you sure?"} %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "Login", new_user_session_path %>
+              </li>
+              <li>
+                <%= link_to "Register", new_user_registration_path %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <% flash.each do |a, b| %>
+        <div class="alert alert-success"> <%= b %> </div>
+      <% end %>
+    <%= yield %>
+    </div>
+  </body>
+</html>
