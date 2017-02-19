@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Moodygram</title>
+    <title>Instagram</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,22 +13,24 @@
     <div class="row">
       <nav>
         <div class="nav-wrapper light-blue darken-2 center">
-          <%= link_to "Moodygram", root_path, :class => "brand-logo" %>
-          <ul class="left hide-on-med-and-down">
-            <li class="<%= "active" if current_page?(new_post_path) %>"><%= link_to "New Post", new_post_path %></li>
-          </ul>
-          <ul class="right hide-on-med-and-down">
+          <%= link_to "Instagram", root_path, :class => "brand-logo" %>
             <% if current_user %>
+              <ul class="left hide-on-med-and-down">
+                <li class="<%= "active" if current_page?(new_post_path) %>"><%= link_to "New Post", new_post_path %></li>
+              </ul>
+            <ul class="right hide-on-med-and-down">
               <li>
                 <%= link_to "Logout", destroy_user_session_path,:data => { method: :delete, :confirm => "Are you sure?"} %>
               </li>
             <% else %>
-              <li>
-                <%= link_to "Login", new_user_session_path %>
-              </li>
-              <li>
-                <%= link_to "Register", new_user_registration_path %>
-              </li>
+              <ul class="right hide-on-med-and-down">
+                <li>
+                  <%= link_to "Login", new_user_session_path %>
+                </li>
+                <li>
+                  <%= link_to "Register", new_user_registration_path %>
+                </li>
+              </ul>
             <% end %>
           </ul>
         </div>

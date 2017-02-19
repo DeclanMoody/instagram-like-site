@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @post = Post.all
+    @post = Post.all.order("created_at DESC")
+    @admin = Post.delete_all
   end
 
   def show
