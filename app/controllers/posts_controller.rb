@@ -5,7 +5,6 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.all.order("created_at DESC")
-    @admin = Post.delete_all
   end
 
   def show
