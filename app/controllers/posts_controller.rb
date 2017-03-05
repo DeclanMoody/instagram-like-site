@@ -22,6 +22,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def delete
+    @delete = Post.delete_all
+  end
+
   private
   def permit_post
     params.require(:post).permit(:image, :description)
