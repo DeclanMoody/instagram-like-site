@@ -1,7 +1,11 @@
 <% @post.each do |x| %>
   <div class="white">
-    <%= image_tag x.image.url(:medium) %>
-    <br>
+    <% if x.image? %>
+      <%= image_tag x.image.url(:medium) %>
+      <br>
+    <% end %>
     <%= x.description %>
+    <h5>Created by: <%= x.user.username %></h5>
+    <h1> </h1>
   </div>
 <% end %>

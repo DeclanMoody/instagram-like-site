@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   def new
-    @post = Post.new
+    @post = current_user.posts.build
   end
 
   def index
     @post = Post.all.order("created_at DESC")
+    @nil = "nil"
   end
 
   def show
@@ -12,12 +13,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(permit_post)
+    @post = current_user.posts.build(permit_post)
     if @post.save
       flash[:success] = "Success!"
       redirect_to post_path(@post)
     else
-      flash[:error] = @post.error.full_messages
+      flash[:error] = @post.errors.full_messages
       redirect_to new_post_path
     end
   end
