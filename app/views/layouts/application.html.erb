@@ -17,11 +17,17 @@
             <% if current_user %>
               <ul class="left hide-on-med-and-down">
                 <li class="<%= "active" if current_page?(new_post_path) %>"><%= link_to "New Post", new_post_path %></li>
+                <li>
+                  <%= form_tag(add_friends_users_path, :method => "get", id: "search-form") do %>
+                    <%= text_field_tag :search, params[:search], placeholder: "Find Friends" %>
+                  <% end %>
+                </li>
               </ul>
-            <ul class="right hide-on-med-and-down">
-              <li>
-                <%= link_to "Logout", destroy_user_session_path,:data => { method: :delete, :confirm => "Are you sure?"} %>
-              </li>
+              <ul class="right hide-on-med-and-down">
+                <li>
+                  <%= link_to "Logout", destroy_user_session_path,:data => { method: :delete, :confirm => "Are you sure?"} %>
+                </li>
+              </ul>
             <% else %>
               <ul class="right hide-on-med-and-down">
                 <li>

@@ -1,0 +1,11 @@
+<% if @friends.blank? %>
+  <h4>There are no users with the username or email with <%= params[:search] %>.</h4>
+<% else%>
+  <% @friends.each do |t| %>
+    <% if t.username == current_user.username%>
+      <h4>There are no users with the username or email with <%= params[:search] %>.</h4>
+    <% else %>
+      <h2><%= link_to t.username, user_path(t) %></h2>
+    <% end %>
+  <%end  %>
+<% end %>
